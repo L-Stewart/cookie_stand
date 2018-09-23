@@ -12,7 +12,7 @@ var firstAndPike = {
   max: 65,
   averageSale: 6.3,
   random: function(min, max) {
-    Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 };
 console.log(firstAndPike);
