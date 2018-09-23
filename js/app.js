@@ -1,7 +1,7 @@
 'use strict';
 var time = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-var cookies = []
+var cookies = [];
 
 var firstAndPike = {
   min: 23,
@@ -11,10 +11,15 @@ var firstAndPike = {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 };
-console.log(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max));
-console.log(firstAndPike.random(firstAndPike.min, firstAndPike.max));
 
 cookies.push(Math.floor(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max)));
+
+var timeSheet = time.forEach(function(element){
+  console.log(element + ': ' + cookies);
+});
+
+// console.log(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max));
+// console.log(firstAndPike.random(firstAndPike.min, firstAndPike.max));
 
 // var seaTac = {
 //   min: 3,
