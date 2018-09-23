@@ -12,11 +12,20 @@ var firstAndPike = {
   }
 };
 
-cookies.push(Math.floor(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max)));
+// for(var i = 0; i < time.length; i++){
+//   cookies.push(Math.floor(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max)));
+//   document.getElementById('sales').innerHTML = time[i] + ': ' + cookies[i];
+//   console.log(cookies[i]);
+//   console.log(time[i]);
+// }
 
-var timeSheet = time.forEach(function(element){
-  console.log(element + ': ' + cookies);
-});
+var i = 0;
+while(i < time.length){
+  cookies.push(Math.floor(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max)));
+  document.getElementById('sales').innerHTML = time[i] + ': ' + cookies[i];
+  i++;
+  console.log(i);
+}
 
 // console.log(firstAndPike.averageSale * firstAndPike.random(firstAndPike.min, firstAndPike.max));
 // console.log(firstAndPike.random(firstAndPike.min, firstAndPike.max));
