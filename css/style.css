@@ -1,0 +1,12 @@
+html {
+    width: 960px;
+}
+
+ul {
+    padding: 1%;
+}
+
+.stores {
+    display: inline-block;
+    width: 17%;
+}
