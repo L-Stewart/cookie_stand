@@ -1,6 +1,8 @@
 'use strict';
-var openHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+//This is my salmon cookies progect
 
+var openHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+//The store in Pike Place
 var pikePlace = {
   name: 'First and Pike',
   min: 23,
@@ -35,9 +37,9 @@ pikePlace.renderHours = function(){
   var ulEl = document.createElement('ul'); //create an elemnt
   console.log(this.cookiesSoldEachHour);
 
-  for(var i in this.cookiesSoldEachHour){ //give ul content
+  for(var i in openHours){
     var listItemEl = document.createElement('li');
-    listItemEl.textContent = this.cookiesSoldEachHour[i];
+    listItemEl.textContent = openHours[i] + ': ' + this.cookiesSoldEachHour[i];
     ulEl.appendChild(listItemEl);
 
     //same as
@@ -47,5 +49,40 @@ pikePlace.renderHours = function(){
   //append the ul
   storesContainer.appendChild(ulEl);
 };
-pikePlace.renderHours();
 // pikePlace.calculateCookiesSoldEachHour();
+
+//The store at SeaTac
+var seaTac = {
+  name: 'First and Pike',
+  min: 3,
+  max: 24,
+  avgCookiesPerSale: 1.2,
+  cookiesSoldEachHour: [],
+};
+
+//The store at Seattle Center
+var seattleCenter = {
+  name: 'First and Pike',
+  min: 11,
+  max: 38,
+  avgCookiesPerSale: 3.7,
+  cookiesSoldEachHour: [],
+};
+
+//The Store at Capitol Hill
+var capitolHill = {
+  name: 'First and Pike',
+  min: 20,
+  max: 38,
+  avgCookiesPerSale: 2.3,
+  cookiesSoldEachHour: [],
+};
+
+//The Store at Alki
+var alki = {
+  name: 'First and Pike',
+  min: 2,
+  max: 16,
+  avgCookiesPerSale: 4.6,
+  cookiesSoldEachHour: [],
+};
