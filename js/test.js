@@ -1,15 +1,6 @@
 'use strict';
 
-var pikePlace = {
-  name: 'First and Pike',
-  min: 23,
-  max: 65,
-  avgCookiesPerSale: 6.3,
-  cookiesSoldEachHour: [],
-};
-
 //Constructor for all stores
-
 var Store = function(name, minCustomersPerHour, maxCustomersPerHour, averageCookiesSoldPerCustomers){
   this.name = name;
   this.min = minCustomersPerHour;
@@ -25,6 +16,15 @@ Store.prototype.calculateCustomersPerHour = function(){
 
 var seaTac = new Store('SeaTac', 30, 35, 3.14);
 console.log(seaTac);
+
+//Original object code
+var pikePlace = {
+  name: 'First and Pike',
+  min: 23,
+  max: 65,
+  avgCookiesPerSale: 6.3,
+  cookiesSoldEachHour: [],
+};
 
 pikePlace.calculateCustomersPerHour = function(){
   var randomAmount = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
