@@ -2,11 +2,20 @@ html {
     width: 960px;
 }
 
-ul {
-    padding: 1%;
+body {
+    margin: 0%;
 }
 
-.stores {
+h2 {
     display: inline-block;
-    width: 17%;
+    vertical-align: top;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    margin: 0%;
+}
+
+ul {
+    width: 150px;
+    margin: 0%;
 }
