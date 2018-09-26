@@ -8,7 +8,7 @@ var openHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm
 
 //The store in Pike Place
 var pikePlace = {
-  name: 'First and Pike',
+  name: 'Pike Place',
   min: 23,
   max: 65,
   avgCookiesPerSale: 6.3,
