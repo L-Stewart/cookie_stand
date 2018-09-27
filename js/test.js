@@ -134,6 +134,6 @@ allStores.push//storename();
 
 var renderallStoresAsTableRows = function(){
   for(var i in allStores){
-    
+
   }
 }
