@@ -9,7 +9,6 @@ var CookieStores = function(name, minCustomersPerHour, maxCustomersPerHour, aver
   this.max = maxCustomersPerHour;
   this.avgCookiesPerSale = averageCookiesSoldPerCustomers;
   this.cookiesSoldEachHour = [];
-  this.totalCookies = [];
 };
 
 CookieStores.prototype.calculateCustomersPerHour = function() {
@@ -23,21 +22,34 @@ CookieStores.prototype.calculateCookiesSoldEachHour = function(){
   }
 };
 
-CookieStores.prototype.totalCookiesSum = function() {
+CookieStores.prototype.totalCookiesSum = function(){
   var cookiesSum = function(total, num){
-    total + num;
+    return total + num;
   };
-  return cookiesSum();
+  return this.cookiesSoldEachHour.reduce(cookiesSum);
 };
 
-CookieStores.prototype.totalCookiesPush = function(){
-  this.totalCookies.push(this.cookiesSoldEachHour.reduce(this.cookiesSum));
-}
+var renderHeader = function(){
+  openHours;
+
+  var salmonCookieStoreTable = document.getElementById('store-table');
+
+  var tableHeaderRow = document.createElement('tr');
+  openHours;
+
+  for(var i in openHours){
+    var tableHeaderHeader = document.createElement('th');
+    tableHeaderHeader.textContent = openHours[i];
+    tableHeaderRow.appendChild(tableHeaderHeader);
+  }
+  salmonCookieStoreTable.appendChild(tableHeaderRow);
+};
+renderHeader();
 
 CookieStores.prototype.renderTableRow = function(){
   this.calculateCookiesSoldEachHour();
 
-  var salmonCookieTable = document.getElementById('store-table');
+  var salmonCookieStoreTable = document.getElementById('store-table');
 
   var tableRowElement = document.createElement('tr'); //table row
 
@@ -51,11 +63,10 @@ CookieStores.prototype.renderTableRow = function(){
     tableRowElement.appendChild(tableDataElement);
   }
 
-  tableDataElement.textContent = 'Total: ' + this.totalCookies;
+  tableDataElement.textContent = 'Total: ' + this.totalCookiesSum();
   tableRowElement.appendChild(tableDataElement);
 
-  salmonCookieTable.appendChild(tableRowElement);
-
+  salmonCookieStoreTable.appendChild(tableRowElement);
 };
 
 
