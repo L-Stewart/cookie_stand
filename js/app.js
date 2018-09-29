@@ -17,36 +17,10 @@ CookieStores.prototype.calculateCustomersPerHour = function() {
 };
 
 CookieStores.prototype.calculateCookiesSoldEachHour = function(){
-  for(var i in openHours.length){
-    return this.cookiesSoldEachHour.push(this.calculateCustomersPerHour());
+  for(var i in openHours){
+    this.cookiesSoldEachHour.push(this.calculateCustomersPerHour());
   }
 };
-
-// CookieStores.prototype.renderStoreHours = function(){
-//   if(!this.cookiesSoldEachHour.length){
-//     this.calculateCookiesSoldEachHour();
-
-//     var storesContainer = document.getElementById('stores');
-
-//     var headerEl = document.createElement('h2');
-
-//     headerEl.textContent = this.name;
-
-//     storesContainer.appendChild(headerEl);
-
-//     var ulEl = document.createElement('ul');
-
-//     for(var i in this.cookiesSoldEachHour){
-//       var listItemEl = document.createElement('li');
-
-//       listItemEl.textContent = this.cookiesSoldEachHour[i];
-
-//       ulEl.appendChild(listItemEl);
-//     }
-
-//     storesContainer.appendChild(ulEl);
-//   }
-// };
 
 CookieStores.prototype.renderTableRow = function(){
   this.calculateCookiesSoldEachHour();
@@ -59,19 +33,12 @@ CookieStores.prototype.renderTableRow = function(){
   tableHeaderElement.textContent = this.name;
   tableRowElement.appendChild(tableHeaderElement); // add table header to the row
 
-
-  var tableDataElement = document.createElement('td'); //table data
-  tableDataElement.textContent = this.min;
-  tableRowElement.appendChild(tableDataElement);
-
-  tableDataElement = document.createElement('td'); //Added new data to tableDataElement
-  tableDataElement.textContent = this.max;
-  tableRowElement.appendChild(tableDataElement);
-
-  tableDataElement = document.createElement('td');
-  tableDataElement.textContent = this.averageCookiesPerHour;
-  tableRowElement.appendChild(tableDataElement);
-
+  for(var i in this.cookiesSoldEachHour){
+    var tableDataElement = document.createElement('td'); //table data
+    tableDataElement.textContent = this.cookiesSoldEachHour[i];
+    tableRowElement.appendChild(tableDataElement);
+  }
+  
   salmonCookieTable .appendChild(tableRowElement);
 
 };
