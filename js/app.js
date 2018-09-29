@@ -17,6 +17,13 @@ var seattleCenter = new CookieStores('Seattle Center', 11, 38, 3.7);
 var capitolHill = new CookieStores('Capitol Hill', 20, 38, 2.3);
 var alki = new CookieStores('Alki', 2, 16, 4.6);
 
+var storeArray = [
+  pikePlace,
+  seaTac,
+  seattleCenter,
+  capitolHill,
+  alki
+];
 
 CookieStores.prototype.calculateCustomersPerHour = function() {
   var randomCustomers = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
@@ -37,27 +44,24 @@ CookieStores.prototype.totalCookiesSum = function(){
 };
 
 var renderHeader = function(){
-  openHours;
+  var storeTableHeader = document.getElementById('store-table');
 
-  var salmonCookieStoreTableHeader = document.getElementById('store-table');
+  var tableHeader = document.createElement('thead');
 
-  var tableHeaderRow = document.createElement('tr');
-  openHours;
+  var headerRow = document.createElement('tr');
 
-  var storename = document.createElement('th');
-
-  storename.textContent = 'Open Hours: ';
+  var headerTitle = document.createElement('th');
+  headerTitle.textContent = 'Open Hours: ';
+  headerRow.appendChild(headerTitle);
+  storeTableHeader.appendChild(headerRow);
 
   var tableHeaderHeader = document.createElement('th');
-  tableHeaderHeader.appendChild(storename);
-  salmonCookieStoreTableHeader.appendChild(tableHeaderHeader);
-
 
   for(var i in openHours){
     tableHeaderHeader = document.createElement('th');
     tableHeaderHeader.textContent = openHours[i];
-    tableHeaderRow.appendChild(tableHeaderHeader);
-    salmonCookieStoreTableHeader.appendChild(tableHeaderHeader);
+    headerRow.appendChild(tableHeaderHeader);
+    storeTableHeader.appendChild(headerRow);
   }
 };
 renderHeader();
@@ -80,7 +84,7 @@ CookieStores.prototype.renderTableRow = function(){
     salmonCookieStoreTable.appendChild(tableRowElement);
   }
 
-  tableDataElement = document.createElement('td');
+  tableDataElement = document.createElement('th');
   tableDataElement.textContent = 'Total: ' + this.totalCookiesSum();
   tableRowElement.appendChild(tableDataElement);
 
@@ -88,16 +92,35 @@ CookieStores.prototype.renderTableRow = function(){
 };
 
 var renderFooter = function(){
+  var storeTableFooter = document.getElementById('store-table');
 
+  var tableFooter = document.createElement('tfoot');
+
+  var footerRow = document.createElement('tr');
+
+  var footerTitle = document.createElement('th');
+  footerTitle.textContent = 'Cookies Per Hour';
+  footerRow.appendChild(footerTitle);
+  storeTableFooter.appendChild(footerRow);
+
+  var footerHeader = document.createElement('th');
+  storeTableFooter.appendChild(footerHeader);
+
+  var totalCookiesPerHour = 0;
+
+  for(var i in openHours){
+    for(var h in storeArray){
+      totalCookiesPerHour += storeArray[h].cookiesSoldEachHour[i];
+    }
+    footerHeader = document.createElement('th');
+    footerHeader.textContent = totalCookiesPerHour;
+    footerRow.appendChild(footerHeader);
+    storeTableFooter.appendChild(footerRow);
+    totalCookiesPerHour = 0;
+  }
+  console.log(totalCookiesPerHour);
 };
 
-var storeArray = [
-  pikePlace,
-  seaTac,
-  seattleCenter,
-  capitolHill,
-  alki
-];
 
 var renderCookieStores = function(stores){
   for(var i in stores){
@@ -106,3 +129,5 @@ var renderCookieStores = function(stores){
 };
 
 renderCookieStores(storeArray);
+
+renderFooter();
