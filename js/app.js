@@ -53,7 +53,8 @@ var renderHeader = function(){
   var headerTitle = document.createElement('th');
   headerTitle.textContent = 'Open Hours: ';
   headerRow.appendChild(headerTitle);
-  storeTableHeader.appendChild(headerRow);
+  tableHeader.appendChild(headerRow);
+  storeTableHeader.appendChild(tableHeader);
 
   var tableHeaderHeader = document.createElement('th');
 
@@ -61,7 +62,8 @@ var renderHeader = function(){
     tableHeaderHeader = document.createElement('th');
     tableHeaderHeader.textContent = openHours[i];
     headerRow.appendChild(tableHeaderHeader);
-    storeTableHeader.appendChild(headerRow);
+    tableHeader.appendChild(headerRow);
+    storeTableHeader.appendChild(tableHeader);
   }
 };
 renderHeader();
@@ -101,13 +103,12 @@ var renderFooter = function(){
   var footerTitle = document.createElement('th');
   footerTitle.textContent = 'Cookies Per Hour';
   footerRow.appendChild(footerTitle);
-  storeTableFooter.appendChild(footerRow);
+  tableFooter.appendChild(footerRow);
+  storeTableFooter.appendChild(tableFooter);
 
   var footerHeader = document.createElement('th');
-  storeTableFooter.appendChild(footerHeader);
 
-  var totalCookiesPerHour = 0;
-
+  var totalCookiesPerHour = 0; //Loop for getting the total cookies per hour from all stores.
   for(var i in openHours){
     for(var h in storeArray){
       totalCookiesPerHour += storeArray[h].cookiesSoldEachHour[i];
@@ -115,10 +116,22 @@ var renderFooter = function(){
     footerHeader = document.createElement('th');
     footerHeader.textContent = totalCookiesPerHour;
     footerRow.appendChild(footerHeader);
-    storeTableFooter.appendChild(footerRow);
+    tableFooter.appendChild(footerRow);
+    storeTableFooter.appendChild(tableFooter);
     totalCookiesPerHour = 0;
   }
-  console.log(totalCookiesPerHour);
+
+  var allCookies = 0;
+  for(var a in openHours){
+    for(var b in storeArray){
+      allCookies += storeArray[b].cookiesSoldEachHour[a];
+    }
+  }
+  footerHeader = document.createElement('th');
+  footerHeader.textContent = 'Grand Total: ' + allCookies;
+  footerRow.appendChild(footerHeader);
+  tableFooter.appendChild(footerRow);
+  storeTableFooter.appendChild(tableFooter);
 };
 
 
