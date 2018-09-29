@@ -66,7 +66,6 @@ var renderHeader = function(){
     storeTableHeader.appendChild(tableHeader);
   }
 };
-renderHeader();
 
 CookieStores.prototype.renderTableRow = function(){
   this.calculateCookiesSoldEachHour();
@@ -141,6 +140,6 @@ var renderCookieStores = function(stores){
   }
 };
 
+renderHeader();
 renderCookieStores(storeArray);
-
 renderFooter();
