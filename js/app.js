@@ -2,6 +2,7 @@
 
 //This is my salmon cookies progect
 var openHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var storeArray = [];
 
 var CookieStores = function(name, minCustomersPerHour, maxCustomersPerHour, averageCookiesSoldPerCustomers){
   this.name = name;
@@ -9,6 +10,8 @@ var CookieStores = function(name, minCustomersPerHour, maxCustomersPerHour, aver
   this.max = maxCustomersPerHour;
   this.avgCookiesPerSale = averageCookiesSoldPerCustomers;
   this.cookiesSoldEachHour = [];
+
+  storeArray.push(this);
 };
 
 var pikePlace = new CookieStores('1st and Pike', 23, 65, 6.3);
@@ -16,14 +19,6 @@ var seaTac = new CookieStores('SeaTac', 3, 24, 1.2);
 var seattleCenter = new CookieStores('Seattle Center', 11, 38, 3.7);
 var capitolHill = new CookieStores('Capitol Hill', 20, 38, 2.3);
 var alki = new CookieStores('Alki', 2, 16, 4.6);
-
-var storeArray = [
-  pikePlace,
-  seaTac,
-  seattleCenter,
-  capitolHill,
-  alki
-];
 
 CookieStores.prototype.calculateCustomersPerHour = function() {
   var randomCustomers = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
@@ -150,17 +145,20 @@ var newCookieStores = function (exampleEvent) {
   // exampleEvent.stopPropagation();
 
   var storeName = exampleEvent.target['store'].value;
-  var minCustomers = exampleEvent.target.min.value;
-  var maxCustomers = exampleEvent.target.max.value;
-  var avrCookieSales = exampleEvent.target.average.value;
+  var minCustomers = parseInt(exampleEvent.target.min.value);
+  var maxCustomers = parseInt(exampleEvent.target.max.value);
+  var avrCookieSales = parseInt(exampleEvent.target.average.value);
 
   var newStore = new CookieStores(storeName, minCustomers, maxCustomers, avrCookieSales);
-  storeArray.push(newStore);
 };
 
 characterForm.addEventListener('submit', newCookieStores);
 
+// var formReset = function() {
+//   location.reload(renderCookieStores(storeArray), renderFooter());
+// };
 
 renderHeader();
 renderCookieStores(storeArray);
 renderFooter();
+
