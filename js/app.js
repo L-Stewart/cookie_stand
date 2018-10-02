@@ -68,28 +68,30 @@ var renderHeader = function(){
 };
 
 CookieStores.prototype.renderTableRow = function(){
-  this.calculateCookiesSoldEachHour();
+  if(!this.cookiesSoldEachHour.length){
+    this.calculateCookiesSoldEachHour();
 
-  var salmonCookieStoreTable = document.getElementById('store-table');
+    var salmonCookieStoreTable = document.getElementById('store-table');
 
-  var tableRowElement = document.createElement('tr'); //table row
+    var tableRowElement = document.createElement('tr'); //table row
 
-  var tableHeaderElement = document.createElement('th'); //table header
-  tableHeaderElement.textContent = this.name;
-  tableRowElement.appendChild(tableHeaderElement); // add table header to the row
+    var tableHeaderElement = document.createElement('th'); //table header
+    tableHeaderElement.textContent = this.name;
+    tableRowElement.appendChild(tableHeaderElement); // add table header to the row
 
-  for(var i in this.cookiesSoldEachHour){
-    var tableDataElement = document.createElement('td'); //table data
-    tableDataElement.textContent = this.cookiesSoldEachHour[i];
+    for(var i in this.cookiesSoldEachHour){
+      var tableDataElement = document.createElement('td'); //table data
+      tableDataElement.textContent = this.cookiesSoldEachHour[i];
+      tableRowElement.appendChild(tableDataElement);
+      salmonCookieStoreTable.appendChild(tableRowElement);
+    }
+
+    tableDataElement = document.createElement('th');
+    tableDataElement.textContent = 'Total: ' + this.totalCookiesSum();
     tableRowElement.appendChild(tableDataElement);
+
     salmonCookieStoreTable.appendChild(tableRowElement);
   }
-
-  tableDataElement = document.createElement('th');
-  tableDataElement.textContent = 'Total: ' + this.totalCookiesSum();
-  tableRowElement.appendChild(tableDataElement);
-
-  salmonCookieStoreTable.appendChild(tableRowElement);
 };
 
 var renderFooter = function(){
@@ -139,6 +141,25 @@ var renderCookieStores = function(stores){
     stores[i].renderTableRow();
   }
 };
+
+var characterForm = document.getElementById('store-generator');
+var bodyElement = document.getElementById('body');
+
+var newCookieStores = function (exampleEvent) {
+  exampleEvent.preventDefault();
+  // exampleEvent.stopPropagation();
+
+  var storeName = exampleEvent.target['store'].value;
+  var minCustomers = exampleEvent.target.min.value;
+  var maxCustomers = exampleEvent.target.max.value;
+  var avrCookieSales = exampleEvent.target.average.value;
+
+  var newStore = new CookieStores(storeName, minCustomers, maxCustomers, avrCookieSales);
+  storeArray.push(newStore);
+};
+
+characterForm.addEventListener('submit', newCookieStores);
+
 
 renderHeader();
 renderCookieStores(storeArray);
