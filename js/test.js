@@ -108,31 +108,31 @@ characterForm.addEventListener('submit', function(exampleEvent){
 
 
 
-pikePlace.prototype.renderStoreHours = function(){
-  if(!this.cookiesSoldEachHour.length){
-    this.calculateCookiesSoldEachHour();
+// pikePlace.prototype.renderStoreHours = function(){
+//   if(!this.cookiesSoldEachHour.length){
+//     this.calculateCookiesSoldEachHour();
 
-    var storesContainer = document.getElementById('stores');
+//     var storesContainer = document.getElementById('stores');
 
-    var headerEl = document.createElement('h2');
+//     var headerEl = document.createElement('h2');
 
-    headerEl.textContent = this.name;
+//     headerEl.textContent = this.name;
 
-    storesContainer.appendChild(headerEl);
+//     storesContainer.appendChild(headerEl);
 
-    var ulEl = document.createElement('ul');
+//     var ulEl = document.createElement('ul');
 
-    for(var i in this.cookiesSoldEachHour){
-      var listItemEl = document.createElement('li');
+//     for(var i in this.cookiesSoldEachHour){
+//       var listItemEl = document.createElement('li');
 
-      listItemEl.textContent = this.cookiesSoldEachHour[i];
+//       listItemEl.textContent = this.cookiesSoldEachHour[i];
 
-      ulEl.appendChild(listItemEl);
-    }
+//       ulEl.appendChild(listItemEl);
+//     }
 
-    storesContainer.appendChild(ulEl);
-  }
-};
+//     storesContainer.appendChild(ulEl);
+//   }
+// };
 
 
 
@@ -224,12 +224,44 @@ pikePlace.prototype.renderStoreHours = function(){
 // };
 
 
+var characterForm = document.getElementById('character-generator-form');
+var bodyElement = document.getElementById('body');
+var allCharacters = [];
 
-var numbers = [65, 44, 12, 4];
+var Character = function(name, level, race, characterClass){
+  this.name = name;
+  this.level = level;
+  this.race = race;
+  this.characterClass = characterClass;
+  this.isCool = true;
+};
 
-function getSum(total, num) {
-    return total + num;
+
+Character.prototype.talkAboutSelf = function (){
+  var resultString = `Hi my name is ${this.name}, I am a level ${this.level} ${this.race} ${this.characterClass}`
+  console.log(resultString);
 }
-function myFunction(item) {
-    document.getElementById("demo").textContent = numbers.reduce(getSum);
-}
+
+// best practice syntax
+
+var handleMakeCharacter = function (exampleEvent) {
+  exampleEvent.preventDefault();
+  exampleEvent.stopPropagation();
+  // console.log(exampleEvent);
+  // console.log(exampleEvent.target);
+  // console.log(exampleEvent.target.level);
+  var level = exampleEvent.target.level.value;
+  var characterName = exampleEvent.target['character-name'].value;
+  var fantasyRace = exampleEvent.target['fantasy-race'].value;
+  var characterClass = exampleEvent.target.class.value;
+  // console.log(level, characterName, fantasyRace, characterClass);
+  var newCharacter = new Character(characterName, level, fantasyRace, characterClass);
+  allCharacters.push(newCharacter);
+  
+};
+
+bodyElement.addEventListener('click', function (event) {
+  console.log('hi');
+});
+
+characterForm.addEventListener('submit', handleMakeCharacter);
