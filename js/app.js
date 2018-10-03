@@ -153,7 +153,6 @@ var newCookieStores = function (exampleEvent) {
 };
 
 characterForm.addEventListener('submit', newCookieStores);
-characterForm.addEventListener('reset', resetTable);
 
 var resetTable = function(){
   var deleteFooter = document.getElementById('store-table').deleteTFoot();
