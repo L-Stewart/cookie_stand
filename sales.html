@@ -23,18 +23,19 @@
           <legend>Add In New Stores</legend>
           
           <label for="store-name">Store Name</label>
-          <input name="store" type="text" value="insert store name here"/>
+          <input name="store" type="text" onfocus="this.value=''" value="insert store name here"/>
     
           <label for="min-customers">Minimum Customers</label>
-          <input name="min" type="number" />
+          <input name="min" onfocus="this.value=''" type="number" />
           
           <label for="max-customers">Maximum Customers</label>
-          <input name="max" type="number" />
+          <input name="max" onfocus="this.value=''" type="number" />
     
           <label for="cookies-per-customers">Average Cookies Sold Per Customer</label>
-          <input name="average" type="number">
+          <input name="average" onfocus="this.value=''" type="number">
     
           <button type="submit">Add Store</button>
+          <button type="reset">Reset</button>
         </fieldset>
       </form>
     

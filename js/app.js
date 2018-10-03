@@ -138,7 +138,7 @@ var renderCookieStores = function(stores){
 };
 
 var characterForm = document.getElementById('store-generator');
-var bodyElement = document.getElementById('body');
+// var bodyElement = document.getElementById('body');
 
 var newCookieStores = function (exampleEvent) {
   exampleEvent.preventDefault();
@@ -153,10 +153,16 @@ var newCookieStores = function (exampleEvent) {
 };
 
 characterForm.addEventListener('submit', newCookieStores);
+characterForm.addEventListener('reset', resetTable);
 
-// var formReset = function() {
-//   location.reload(renderCookieStores(storeArray), renderFooter());
-// };
+var resetTable = function(){
+  var deleteFooter = document.getElementById('store-table').deleteTFoot();
+  deleteFooter;
+  renderCookieStores(storeArray);
+  renderFooter();
+};
+
+
 
 renderHeader();
 renderCookieStores(storeArray);
