@@ -150,20 +150,20 @@ var newCookieStores = function (exampleEvent) {
   var avrCookieSales = parseInt(exampleEvent.target.average.value);
 
   var newStore = new CookieStores(storeName, minCustomers, maxCustomers, avrCookieSales);
+
+
+  // resets the table
+  var resetTable = function(){ 
+    var deleteFooter = document.getElementById('store-table').deleteTFoot();
+    deleteFooter;
+    renderCookieStores(storeArray);
+    renderFooter();
+  };
+  resetTable();
 };
 
 characterForm.addEventListener('submit', newCookieStores);
 
-var resetTable = function(){
-  var deleteFooter = document.getElementById('store-table').deleteTFoot();
-  deleteFooter;
-  renderCookieStores(storeArray);
-  renderFooter();
-};
-
-
-
 renderHeader();
 renderCookieStores(storeArray);
 renderFooter();
-
