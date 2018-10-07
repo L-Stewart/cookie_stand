@@ -1,3 +1,8 @@
+body {
+    width: 960px;
+    margin: auto;
+}
+
 header {
     background-color: #199;
     width: 100%;
@@ -27,23 +32,14 @@ nav li button {
     background-color: #555;
 }
 
-body {
-    width: 960px;
-    margin: auto;
-}
-
-/* h2 {
-    display: inline-block;
-    vertical-align: top;
-    width: 150px;
-    height: 30px;
-    text-align: center;
-    margin: 0%;
-} */
-
 ul {
     width: 150px;
     margin: 0%;
+}
+
+h1 {
+    margin: 0px;
+    text-align: center;
 }
 
 #store-table{
